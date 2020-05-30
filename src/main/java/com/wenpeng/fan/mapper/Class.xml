@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wenpeng.fan.mapper.ClassMapper">
+    <resultMap id="classandstudent" type="com.wenpeng.fan.entity.Class">
+        <id property="id" column="id"/>
+        <result property="cname" column="cname"/>
+        <collection property="students" javaType="com.wenpeng.fan.entity.Student">
+            <id property="sid" column="id"/>
+            <result property="sname" column="name"/>
+        </collection>
+    </resultMap>
+
+    <insert id="insert" parameterType="com.wenpeng.fan.entity.Class" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        insert into class(cname) values(#{cname})
+    </insert>
+
+    <select id="select" resultMap="classandstudent" parameterType="java.lang.Integer">
+        select c.id id,c.cname cname,s.id sid,s.sname sname from class c,student s where c.id=#{id} and c.id=s.c_id
+    </select>
+
+</mapper>

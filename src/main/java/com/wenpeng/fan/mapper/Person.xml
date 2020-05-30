@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wenpeng.fan.mapper.PersonMapper">
+    <resultMap id="personmap" type="com.wenpeng.fan.entity.Person">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <association property="persondetail" javaType="com.wenpeng.fan.entity.Persondetail">
+            <id property="id" column="pdid"/>
+            <result property="home" column="home"/>
+        </association>
+
+    </resultMap>
+    <insert id="insert" parameterType="java.lang.String" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        insert into person(name) values (#{name})
+    </insert>
+
+    <delete id="deleteByid" parameterType="java.lang.Integer">
+        delete from person where id=#{id}
+    </delete>
+
+    <select id="getPerbyid" parameterType="java.lang.Integer">
+        select name from person where id=#{id}
+    </select>
+
+    <select id="getPerangtetailbyid" parameterType="java.lang.Integer" resultMap="personmap">
+        select person.id id,person.name name,persondetail.id pdid,persondetail.home home from person,persondetail where person.id=persondetail.p_id and person.id=#{id}
+    </select>
+
+    <select id="getAll"  resultMap="personmap">
+        select person.id id,person.name name,persondetail.id pdid,persondetail.home home from person,persondetail where person.id=persondetail.p_id
+    </select>
+
+    <update id="updataPer" parameterType="com.wenpeng.fan.entity.Person">
+        update person set name=#{name} where id=#{id}
+    </update>
+
+
+
+</mapper>
