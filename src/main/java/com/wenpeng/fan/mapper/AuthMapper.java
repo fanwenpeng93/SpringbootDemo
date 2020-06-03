@@ -1,5 +1,4 @@
 package com.wenpeng.fan.mapper;
 
-public interface User {
-
+public interface AuthMapper {
 }

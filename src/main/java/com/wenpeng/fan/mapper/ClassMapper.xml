@@ -4,9 +4,9 @@
     <resultMap id="classandstudent" type="com.wenpeng.fan.entity.Class">
         <id property="id" column="id"/>
         <result property="cname" column="cname"/>
-        <collection property="students" javaType="com.wenpeng.fan.entity.Student">
-            <id property="sid" column="id"/>
-            <result property="sname" column="name"/>
+        <collection property="students" ofType="com.wenpeng.fan.entity.Student">
+            <id property="id" column="sid"/>
+            <result property="sname" column="sname"/>
         </collection>
     </resultMap>
 

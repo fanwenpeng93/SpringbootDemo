@@ -1,6 +1,8 @@
 package com.wenpeng.fan.service.impl;
 
 import com.wenpeng.fan.entity.Person;
+import com.wenpeng.fan.entity.Persondetail;
+import com.wenpeng.fan.mapper.PersonMapper;
 import com.wenpeng.fan.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,41 +10,49 @@ import org.springframework.stereotype.Service;
 @Service
 public class PersonServiceimpl implements PersonService {
     @Autowired
-    private PersonService personService;
+    private PersonMapper personMapper;
 
 
     @Override
+    public void insertpd(Persondetail persondetail) {
+        personMapper.insertpd(persondetail);
+    }
+
+    @Override
     public int insert(Person person) {
-        int id=personService.insert(person);
+        personMapper.insert(person);
+        int id=person.getId();
         return id;
     }
 
     @Override
     public void deleteByid(int id) {
-        personService.deleteByid(id);
+        personMapper.deleteByid(id);
 
     }
 
     @Override
     public Person getPerbyid(int id) {
-        Person person=personService.getPerbyid(id);
+        Person person=personMapper.getPerbyid(id);
         return person;
     }
 
     @Override
     public Person getPerangtetailbyid(int id) {
-        Person person=personService.getPerangtetailbyid(id);
+        Person person=personMapper.getPerangtetailbyid(id);
         return person;
     }
 
     @Override
     public Person getAll() {
-        Person person=personService.getAll();
-        return null;
+        Person person=personMapper.getAll();
+        return person;
     }
 
     @Override
     public void updataPer(Person person) {
-        personService.updataPer(person);
+        personMapper.updataPer(person);
     }
+
+
 }

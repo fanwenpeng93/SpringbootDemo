@@ -14,7 +14,8 @@ public class ClassServiceimpl implements ClassService {
 
     @Override
     public int insert(Class classs) {
-        int id=classMapper.insert(classs);
+        classMapper.insert(classs);
+        int id=classs.getId();
         return id;
     }
 

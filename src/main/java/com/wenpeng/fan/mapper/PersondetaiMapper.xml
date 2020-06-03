@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wenpeng.fan.mapper.PersondetailMapper">
+    <insert id="insert" parameterType="com.wenpeng.fan.entity.Persondetail" >
+        insert into persondetail(home,p_id) values (#{home},#{p_id})
+    </insert>
+    <select id="selectpd" resultType="com.wenpeng.fan.entity.Persondetail">
+        select * from persondetail
+    </select>
+</mapper>
